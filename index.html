@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday 🎂</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #14001f, #43005c, #ff3cac);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    z-index: 5;
+}
+
+h1 {
+    font-size: clamp(45px, 10vw, 90px);
+    font-weight: 900;
+    animation: glow 2s infinite alternate,
+               zoom 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px #fff,
+                 0 0 30px #ff69b4,
+                 0 0 60px #ff1493;
+}
+
+.name {
+    font-size: clamp(30px, 7vw, 60px);
+    color: #ffd700;
+    margin: 10px 0 25px;
+    animation: slideUp 1.5s ease;
+}
+
+.message {
+    max-width: 750px;
+    font-size: 20px;
+    line-height: 1.7;
+    background: rgba(255,255,255,0.12);
+    padding: 25px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    animation: fadeIn 2s ease;
+}
+
+.prayer {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #fff4a3;
+}
+
+.cake {
+    position: relative;
+    width: 160px;
+    height: 120px;
+    margin: 25px auto;
+}
+
+.cake-body {
+    position: absolute;
+    bottom: 0;
+    width: 160px;
+    height: 75px;
+    background: linear-gradient(#ffb6c1, #ff69b4);
+    border-radius: 10px 10px 20px 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.cake-top {
+    position: absolute;
+    top: 25px;
+    width: 160px;
+    height: 35px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.candle {
+    position: absolute;
+    width: 12px;
+    height: 45px;
+    background: #00ffff;
+    left: 74px;
+    top: -20px;
+    border-radius: 5px;
+}
+
+.flame {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background: orange;
+    border-radius: 50% 50% 50% 50%;
+    top: -48px;
+    left: -4px;
+    box-shadow: 0 0 20px yellow;
+    animation: flame 0.5s infinite alternate;
+}
+
+.balloon {
+    position: absolute;
+    width: 55px;
+    height: 70px;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: white;
+    left: 50%;
+    top: 65px;
+}
+
+.b1 {
+    background: #ff4757;
+    left: 5%;
+    top: 15%;
+}
+
+.b2 {
+    background: #1e90ff;
+    right: 8%;
+    top: 20%;
+    animation-delay: 1s;
+}
+
+.b3 {
+    background: #ffd32a;
+    left: 15%;
+    bottom: 15%;
+    animation-delay: 2s;
+}
+
+.b4 {
+    background: #2ed573;
+    right: 15%;
+    bottom: 12%;
+    animation-delay: 3s;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    top: -30px;
+    animation: fall linear infinite;
+}
+
+.confetti:nth-child(1) {
+    left: 10%;
+    animation-duration: 4s;
+    background: #ff4757;
+}
+
+.confetti:nth-child(2) {
+    left: 25%;
+    animation-duration: 5s;
+    background: #ffd32a;
+}
+
+.confetti:nth-child(3) {
+    left: 40%;
+    animation-duration: 3s;
+    background: #2ed573;
+}
+
+.confetti:nth-child(4) {
+    left: 60%;
+    animation-duration: 4.5s;
+    background: #1e90ff;
+}
+
+.confetti:nth-child(5) {
+    left: 75%;
+    animation-duration: 3.5s;
+    background: #ff69b4;
+}
+
+.confetti:nth-child(6) {
+    left: 90%;
+    animation-duration: 5s;
+    background: #fff;
+}
+
+button {
+    margin-top: 20px;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff1493, #ff69b4);
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(255,20,147,0.5);
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px white,
+                     0 0 20px #ff69b4;
+    }
+    to {
+        text-shadow: 0 0 20px white,
+                     0 0 50px #ff1493,
+                     0 0 80px #ff69b4;
+    }
+}
+
+@keyframes zoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes flame {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2) rotate(3deg);
+    }
+}
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+    50% {
+        transform: translateY(-40px) rotate(5deg);
+    }
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="balloon b1"></div>
+<div class="balloon b2"></div>
+<div class="balloon b3"></div>
+<div class="balloon b4"></div>
+
+<div class="confetti"></div>
+<div class="confetti"></div>
+<div class="confetti"></div>
+<div class="confetti"></div>
+<div class="confetti"></div>
+<div class="confetti"></div>
+
+<div class="container">
+
+    <h1>🎉 HAPPY BIRTHDAY 🎉</h1>
+
+    <div class="name">BIG MUMMY ❤️</div>
+
+    <div class="cake">
+        <div class="cake-top"></div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="cake-body"></div>
+    </div>
+
+    <div class="message">
+
+        🎂 Today is a special day because
+        <strong>you</strong> are celebrating another beautiful year of life. ❤️
+
+        <div class="prayer">
+
+            🙏 May God bless you with many more years of happiness,
+            good health, peace and success.
+
+            <br><br>
+
+            May every dream in your heart become a reality.
+            May doors of opportunities open for you,
+            and may you always have reasons to smile.
+
+            <br><br>
+
+            May this new chapter bring you greater achievements,
+            beautiful memories, genuine happiness and abundant blessings.
+
+            <br><br>
+
+            ✨ May God's favour go before you,
+            His protection remain with you,
+            and His grace follow you wherever you go.
+
+            <br><br>
+
+            🎉 Happy Birthday once again!
+            May this year be your BEST YEAR YET! ❤️
+
+        </div>
+    </div>
+
+    <button onclick="celebrate()">
+        🎊 Celebrate 🎊
+    </button>
+
+</div>
+
+<script>
+function celebrate() {
+    for(let i = 0; i < 80; i++) {
+        let piece = document.createElement("div");
+
+        piece.style.position = "fixed";
+        piece.style.width = "8px";
+        piece.style.height = "15px";
+
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.top = "-20px";
+
+        piece.style.background =
+            ["#ff4757",
+             "#ffd32a",
+             "#2ed573",
+             "#1e90ff",
+             "#ff69b4",
+             "#ffffff"][Math.floor(Math.random() * 6)];
+
+        piece.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+        piece.style.zIndex = "100";
+
+        document.body.appendChild(piece);
+
+        let duration = 2000 + Math.random() * 3000;
+
+        piece.animate(
+            [
+                { transform: "translateY(0) rotate(0deg)" },
+                { transform: "translateY(110vh) rotate(720deg)" }
+            ],
+            {
+                duration: duration,
+                easing: "linear"
+            }
+        );
+
+        setTimeout(() => {
+            piece.remove();
+        }, duration);
+    }
+
+    alert("🎉 HAPPY BIRTHDAY! 🎂❤️");
+}
+</script>
+
+</body>
+</html>
